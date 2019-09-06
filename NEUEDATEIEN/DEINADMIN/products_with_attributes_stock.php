@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_with_attributes_stock.php 2019-08-11 12:37:14Z webchills $
+ * @version $Id: products_with_attributes_stock.php 2019-08-19 19:37:14Z webchills $
  */
 
 $SBAversion = 'Version 2.0.0';
@@ -474,16 +474,9 @@ switch ($action) {
       //update existing records
       $saveResult = $stock->updateAttribQty($stock_id, $quantity);
       
-    }
-
-    if ($saveResult == 1) {
-      //Use the button 'Sync Quantities' when needed, or uncomment the line below if you want it done automatically.
-      //$stock->update_parent_products_stock($products_id);//keep this line as option, but I think this should not be done automatically.
-      $messageStack->add_session("Artikel erfolgreich aktualisiert", 'success');
-    } else {
-      $messageStack->add_session("Artikel $products_id Aktualisierung fehlgeschlagen: $saveResult", 'failure');
-    }
-
+    }    
+    $messageStack->add_session("Artikel ID $products_id erfolgreich aktualisiert", 'success');
+   
     zen_redirect(zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'updateReturnedPID=' . (int)$products_id, $request_type));
 
     break;
@@ -691,8 +684,8 @@ function go_search() {
 }
 //--></script>
 
-<div style="padding: 20px;">
 <div class="pageHeading"><?php echo PWA_WELCOME ?></div>
+<br class="clearBoth">
       <!-- body_text_eof //-->
 
     <?php
@@ -932,16 +925,10 @@ break;
     //search box displayed only option
     $SBAsearchbox = null; //initialize
     $searchList = null;
-    if (STOCK_SET_SBA_SEARCHBOX == 'true') {
-      $SBAsearchbox = "Search Box Only";
-    }
-    //elseif( STOCK_SET_SBA_NUMRECORDS > 0 && !isset($_GET['search']) ){
-    //future functionality option (needs work)
-    //limit number of records displayed on page at one time and allow user to select the record range
-    //$SBAsearchbox = "Records Displayed: ". STOCK_SET_SBA_NUMRECORDS;
-    //}
+    
+   
 
-    if (STOCK_SBA_SEARCHLIST == 'true') {
+    
       //Product Selection Listing at top of page
       $searchList = 'select distinct pa.products_id, pd.products_name,
                  p.products_model
@@ -951,15 +938,17 @@ break;
                 WHERE pd.language_id = ' . $language_id . '
                 order by :search_order_by:'; //order by may be changed to: products_id, products_model, products_name
       $searchList = $db->bindVars($searchList, ':search_order_by:', $search_order_by, 'noquotestring');
-echo '<div id="sbasearch">';
-      echo zen_draw_form('pwas-search', FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'search_order_by=' . $search_order_by, 'get', '', true) . "Product Selection List:";
+
+      echo zen_draw_form('pwas-search', FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'search_order_by=' . $search_order_by, 'get', '', true) . "";
+      echo '</div">';
+      echo '<div id="sbasearch">';
       echo $searchList = $stock->selectItemID(TABLE_PRODUCTS_ATTRIBUTES, 'pa.products_id', $seachPID, $searchList, 'seachPID', 'seachPID', 'selectSBAlist');
-      echo zen_draw_input_field('pwas-search-button', 'Suchen', '', true, 'submit', true);
+      echo zen_draw_input_field('pwas-search-button', 'Los!', '', true, 'submit', true);
       echo zen_draw_hidden_field('search_order_by', $search_order_by);
       echo '</div>';
 ?>
       </form>
-      <div id="sbasearch">
+      <div id="sbasortorder">Sortiere nach: 
         <form name="search_order_by" action="<?php echo zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'search_order_by=' . $search_order_by, 'SSL'); ?>">
           <select name="selected" onChange="go_search()">
             <option value="products_model"<?php if ($search_order_by == 'products_model') { echo ' SELECTED'; } ?>><?php echo PWA_PRODUCT_MODEL; ?></option>
@@ -968,11 +957,10 @@ echo '<div id="sbasearch">';
           </select>
         </form>
     </div>
-<?php
-    }
 
-    ?>
-    <?php echo '<div id="sbasearch">';
+
+    
+    <?php echo '<div id="sbasearchgeneral">';
     echo zen_draw_form('pwas-search', FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'search_order_by=' . $search_order_by, 'get', 'id="pwas-search2"', true); ?>Suchen:  <?php 
     echo zen_draw_input_field('search', $seachBox, 'id="pwas-filter"', true, 'text', true);
     echo zen_draw_input_field('pwas-search-button', 'Suchen', 'id="pwas-search-button"', true, 'submit', true);
@@ -980,8 +968,10 @@ echo '<div id="sbasearch">';
     
     ?></form>
     <span style="margin-right:10px;">&nbsp;</span>
+    
     <a href="<?php echo zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'search_order_by=' . $search_order_by, $request_type); ?>">Zurücksetzen</a>
-    <span style="margin-right:20px;color:red;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $SBAsearchbox; ?></span></div><?php 
+   
+    <div id="sbasortresults"><?php echo $SBAsearchbox; ?></div></div><?php 
 //      require(DIR_WS_MODULES . FILENAME_PREV_NEXT);
 
 /////

@@ -839,7 +839,7 @@ function selectItemID($Table, $Field, $current = null, $providedQuery = null, $n
   $class = zen_db_input($class);
   
   $Output = "<SELECT class='".$class."' id='".$id."' name='".$name."' $onChange >";//create selection list
-    $Output .= '<option value="" ' . $style . '>Please Select a Search Item Below...</option>';//adds blank entry as first item in list
+    $Output .= '<option value="" ' . $style . '>Wählen Sie einen Artikel aus der Liste...</option>';//adds blank entry as first item in list
 
   /* Fields that may be of use in returned set
   ["products_id"]
