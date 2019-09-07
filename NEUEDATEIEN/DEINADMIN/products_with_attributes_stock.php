@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_with_attributes_stock.php 2019-08-19 19:37:14Z webchills $
+ * @version $Id: products_with_attributes_stock.php 2019-09-07 08:46:14Z webchills $
  */
 
 $SBAversion = 'Version 2.0.0';
@@ -250,13 +250,13 @@ switch ($action) {
     } //s_mack:noconfirm
     //if invalid entry return to product
     if ((int) $products_id === 0 || is_null($products_id)) {
-      $messageStack->add_session("Missing or bad products_id!", 'failure');
+      $messageStack->add_session("fehlende oder falsche Artikel ID!", 'failure');
       zen_redirect(zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'updateReturnedPID=' . $products_id, $request_type));
     } elseif (!is_numeric($quantity) || is_null($quantity) && $quantity != 0) {
       $messageStack->add_session("fehlende oder falsche Menge!", 'failure');
       zen_redirect(zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'updateReturnedPID=' . $products_id, $request_type));
     } elseif (is_null($attributes) || str_replace(',', null, $attributes) == null) {
-      $messageStack->add_session("Missing Attribute Selection!", 'failure');
+      $messageStack->add_session("kein Attribut ausgewählt!", 'failure');
       zen_redirect(zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, 'updateReturnedPID=' . $products_id, $request_type));
     }
 
@@ -789,11 +789,9 @@ function go_search() {
 <hr><?php
 
          
-          echo '<hr>';
+         
 
-          if (count($product_attributes) > 1) {
-            $msg = 'Only add the attributes used to control ' . PWA_QUANTITY . '.<br />Leave the other attribute groups as N/A.<br />';
-          }
+          
           echo $msg . '<p><strong>' . PWA_QUANTITY . '</strong>' . zen_draw_input_field('quantity') . '</p>' . "\n";
         } else {
 
