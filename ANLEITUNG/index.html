@@ -123,7 +123,13 @@ Dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Zen Cart   Verzeichn
   In die Zen Cart Administration einloggen und auf irgendeinen Menüpunkt clicken.
 </p>
 <p>5.<br>
-  In der Zen Cart Administration sind nun unter Konfiguration &gt;   Lagerverwaltung vier neue Einstellungsmöglichkeiten vorhanden. Stellen   Sie hier ein, ob Sie in der Stock by Attributes Verwaltung Thumbnails   der Artikelbilder sehen wollen.Ob einem Kunden, der mehr in den   Warenkorb legt als verfügbar ist, der derzeitige Lagerbestand angezeigt   werden soll. Und ob Sie Lagerbestände bei der Attributauswahl anzeigen und nicht lagernde Varianten ausblenden wollen.</p>
+  In der Zen Cart Administration sind nun unter Konfiguration &gt;   Lagerverwaltung vier neue Einstellungsmöglichkeiten vorhanden. Stellen   Sie hier ein, ob Sie in der Stock by Attributes Verwaltung Thumbnails   der Artikelbilder sehen wollen. Ob einem Kunden, der mehr in den   Warenkorb legt als verfügbar ist, der derzeitige Lagerbestand angezeigt   werden soll. Und ob Sie Lagerbestände bei der Attributauswahl anzeigen und nicht lagernde Varianten ausblenden wollen.<br>
+  <strong>Wichtig:</strong><br>
+  Die Anzeige der Lagerbestände bei der Attributauswahl macht nur Sinn, wenn Sie wirklich für alle Varianten in der Stock by Attributes Administration einen entsprechenden Lagerbestand hinterlegt haben. Aktivieren Sie das also erst, wenn Sie die Lagerbestände komplett angelegt haben.<br>
+  <strong>Wichtig:</strong><br>
+  Falls der Attributname ein Radio Button ist, dann muss der Attributstil 3, 4 oder 5 sein.<br>
+  Falls Sie die Anzeige auch für andere Attributstile haben wollen, müssen Sie sich die entsprechende Funktionalität in Ihrer includes/modules/DEINTEMPLATE/attributes.php selbst schreiben.
+</p>
 <p>6.<br>
   In der Zen Cart Administration finden Sie nun den neuen Menüpunkt Webshop &gt; Lagerbestand für Artikel mit Attributen.<br>
   Legen Sie hier Ihre gewünschten Lagerbestände für Ihre verschiedenen Artikelvarianten an. <br>
@@ -131,6 +137,7 @@ Dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Zen Cart   Verzeichn
   <strong>Wichtig:</strong><br>
   Diese Funktionalität hat dann nur die Mengen der einzelnen Varianten geändert. Aber nicht die Gesamtmenge des übergeordneten Artikels.<br>
   Sie sehen einen entsprechenden Hinweis und gehen in einem zweiten Schritt auf &quot;Mengen abgeichen&quot; wo Sie diesen Hinweis sehen. Oder Sie verwenden oben rechts &quot;Alle Mengen synchronisieren&quot;
+  <br>
 </p>
 <h2>UPDATE VON VERSION 1.9.1</h2>
 <p>Wenn Sie in Ihrem 1.5.5 Shop bereits die alte Version dieses Moduls im Einsatz hatten, dann entfernen Sie diese alte Version datenbankseitig komplett, bevor Sie in Ihrem 1.5.6 Shop Stock by Attributes 2.0.0 installieren. Entfernen Sie aber nicht die Tabelle products_with_attributes_stock, sonst gehen all Ihre hinterlegten Lagerbestände verloren!<br>

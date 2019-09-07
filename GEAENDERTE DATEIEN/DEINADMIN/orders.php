@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php for SBA 2019-08-11 07:17:51Z webchills $
+ * @version $Id: orders.php for SBA 2019-09-07 07:09:51Z webchills $
 
  */
 require('includes/application_top.php');
@@ -607,6 +607,10 @@ if (zen_not_null($action) && $order_exists == true) {
                     echo $order->products[$i]['name'];
                     if (isset($order->products[$i]['attributes']) && (sizeof($order->products[$i]['attributes']) > 0)) {
                       for ($j = 0, $k = sizeof($order->products[$i]['attributes']); $j < $k; $j++) {
+          // bof SBA
+          $option_name_array = explode(":", $order->products[$i]['attributes'][$j]['option']);
+          $option_Name = $option_name_array[0];
+          // eof SBA
                         echo '<br><span style="white-space:nowrap;"><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
                         if ($order->products[$i]['attributes'][$j]['price'] != '0') {
                           echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
