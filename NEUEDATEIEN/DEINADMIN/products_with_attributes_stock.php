@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_with_attributes_stock.php 2019-09-07 08:46:14Z webchills $
+ * @version $Id: products_with_attributes_stock.php 2019-09-20 08:09:14Z webchills $
  */
 
 $SBAversion = 'Version 2.0.0';
@@ -1152,7 +1152,7 @@ break;
    
     <a class="forward" style="float:right;" href="<?php echo zen_href_link(FILENAME_PRODUCTS_WITH_ATTRIBUTES_STOCK, "action=resync_all" . '&search_order_by=' . $search_order_by, $request_type); ?>"><strong>Alle Mengen synchronisieren</strong></a><br class="clearBoth" /><hr />
     <div id="pwa-table"><?php 
-    echo $stock->displayFilteredRows(STOCK_SET_SBA_SEARCHBOX, null, $seachPID);
+    echo $stock->displayFilteredRows(false, null, $seachPID);
     ?></div><?php
     break;
 }
