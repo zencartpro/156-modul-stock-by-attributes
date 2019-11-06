@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php for SBA 2019-09-07 07:09:51Z webchills $
+ * @version $Id: orders.php for SBA 2019-11-06 12:09:51Z webchills $
 
  */
 require('includes/application_top.php');
@@ -161,6 +161,9 @@ if (zen_not_null($action) && $order_exists == true) {
       $order_updated = false;
       $status_updated = zen_update_orders_history($oID, $comments, null, $status, $customer_notified, $email_include_message);
       $order_updated = ($status_updated > 0);
+      $check_status = $db->Execute("SELECT customers_name, customers_email_address, orders_status, date_purchased
+                                    FROM " . TABLE_ORDERS . "
+                                    WHERE orders_id = " . (int)$oID);
 
       // trigger any appropriate updates which should be sent back to the payment gateway:
       $order = new order((int)$oID);

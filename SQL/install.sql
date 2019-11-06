@@ -1,5 +1,5 @@
 #########################################################################################
-# Stock by Attributes 2.0.0 Multilanguage Install Zen-Cart 1.5.6 - 2019-09-06 - webchills
+# Stock by Attributes 2.0.1 Multilanguage Install Zen-Cart 1.5.6 - 2019-11-06 - webchills
 #########################################################################################
 
 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS products_with_attributes_stock (
 # add configuration
 ##############################
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function, last_modified) 
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function, last_modified) 
 VALUES ('Stock by Attributes - Show available stock level in cart when less than order', 'STOCK_SHOW_LOW_IN_CART', 'false', 'When customer places more items in cart than are available, show the available amount on the shopping cart page:','9','6', now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),', now()),
        ('Stock by Attributes - Display Images in Admin', 'STOCK_SHOW_IMAGE', 'true', 'Display image thumbnails on Products With Attributes Stock page? (warning, setting this to true can severly slow the loading of this page):', '9', '6', now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),', now()),
        ('Stock by Attributes - Hide soldout variants', 'SBA_HIDE_SOLDOUT_VARIANTS', 'false', 'Do you want to hide variants which are currently not in stock?', '9', '6', now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),', now()),

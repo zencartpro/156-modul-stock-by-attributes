@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_with_attributes_stock.php 2019-08-11 08:37:14Z webchills $
+ * @version $Id: products_with_attributes_stock.php 2019-11-06 12:37:14Z webchills $
  */
  
 define('PWA_DELETE_VARIANT_CONFIRMATION', 'Wollen Sie diese Artikelvariante wirklich löschen?');
@@ -32,4 +32,4 @@ define('PWA_EDIT', 'Bearbeiten');
 define('PWA_DELETE', 'Löschen');
 define('PWA_SUBMIT','Absenden');
 define('PWA_SORTIEREN','Sortieren');
-define('PWA_WELCOME','Lagerbestandsverwaltung für Artikel mit Attributen (Stock by Attributes) 2.0.0');
+define('PWA_WELCOME','Lagerbestandsverwaltung für Artikel mit Attributen (Stock by Attributes) 2.0.1');
