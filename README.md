@@ -9,7 +9,7 @@ Mit Stock by Attributes können Sie nun einstellen, wieviele dieses T-Shirts in 
 
 Wenn Sie unter Konfiguration > Lagerverwaltung einstellen, dass Bestellungen nicht möglich sind, wenn der Lagerbestand unterschritten wird, können Sie also verhindern, dass jemand ein Baumwollshirt in blau und Größe S bestellt, falls sie das gerade nicht auf Lager haben. Es ist auch möglich einzustellen, dass dem Kunden der verfügbare Lagerbestand angezeigt wird, falls er von einer Kombination zuviel in den Warenkorb legt.
 
-Neu in Version 2.0.0:
+Neu seit Version 2.0.0:
 * komplett überarbeitete Administration, direktes Ändern mehrerer Lagerbestände via Ajax
 * Anzeige des verfügbaren Lagerbestandes für die Variante gleich bei der Attributauswahl auf der Artikeldetailseite (admingesteuert)
 * Ausblenden von nicht lagernden Varianten bei der Attributauswahl auf der Artikeldetailseite (admingesteuert) 
