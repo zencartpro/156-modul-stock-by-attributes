@@ -270,12 +270,7 @@ class products_with_attributes_stock_admin extends base {
       $product_id = $paramsArray['product_id']; //=>$product_id
       $ptc = $paramsArray['ptc'];
       $this->updateNotifierAdminZenRemoveProduct($callingClass, $notifier, $paramsArray, $product_id, $ptc);
-    }
-
-    if ($notifier == 'NOTIFY_ADMIN_PRODUCT_COPY_TO_ATTRIBUTES'){
-      global $contents;
-      $this->updateNotifyAdminProductCopyToAttributes($callingClass, $notifier, $paramsArray, $contents);
-    }
+    }    
     
     if ($notifier == 'NOTIFY_ATTRIBUTE_CONTROLLER_DELETE_ATTRIBUTE'){
       $attribute_id = $paramsArray['attribute_id'];
