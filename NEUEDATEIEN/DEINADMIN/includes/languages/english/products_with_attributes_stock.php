@@ -16,4 +16,4 @@ define('PWA_QUANTITY_IN_STOCK', 'Quantity in Stock');
 define('PWA_EDIT', 'Edit');
 define('PWA_DELETE', 'Delete');
 define('PWA_SUBMIT','Submit');
-define('PWA_WELCOME','Stock by Attributes 2.0.1');
+define('PWA_WELCOME','Stock by Attributes 2.0.2');

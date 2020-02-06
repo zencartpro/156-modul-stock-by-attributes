@@ -1,6 +1,10 @@
 # 156-modul-stock-by-attributes
 Stock by Attributes für Zen Cart 1.5.6 deutsch
 
+Hinweis: 
+Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlich unter Releases herunterladen:
+https://github.com/zencartpro/156-modul-stock-by-attributes/releases
+
 Stock by Attributes ermöglicht das Anlegen von Lagerbeständen für Artikel mit Attributen.
 
 Sie verkaufen z.B. ein T-Shirt in 3 verschiedenen Größen (L, M und S). Dann haben Sie ja für das T-Shirt den Attributnamen Größe angelegt, die Attributmerkmale L, M und S und dem Artikel diese 3 Attribute zugeordnet. 
