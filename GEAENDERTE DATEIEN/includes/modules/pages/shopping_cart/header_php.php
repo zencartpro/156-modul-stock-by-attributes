@@ -135,7 +135,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $attrArray[$option]['options_values_price'] = $attributes_values->fields['options_values_price'];
       $attrArray[$option]['price_prefix'] = $attributes_values->fields['price_prefix'];
     }
-    // bof SBA 2.0.0
+    // bof SBA
     	// START "Stock by Attributes"
  		/* Fix subsequent products showing out of stock when they actually have stock--Zola */
 		$flagStockCheck = null;   
@@ -161,18 +161,8 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
 			}
 
 		}
-    // eof SBA 2.0.0
+    // eof SBA
   } //end foreach [attributes]
-/*
-  if (STOCK_CHECK == 'true') {
-    $qtyAvailable = zen_get_products_stock($products[$i]['id']);
-    // compare against product inventory, and against mixed=YES
-    if ($qtyAvailable - $products[$i]['quantity'] < 0 || $qtyAvailable - $_SESSION['cart']->in_cart_mixed($products[$i]['id']) < 0) {
-        $flagStockCheck = '<span class="markProductOutOfStock">' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</span>';
-      $flagAnyOutOfStock = true;
-    }
-  }
-*/
   $linkProductsImage = zen_href_link(zen_get_info_page($products[$i]['id']), 'products_id=' . $products[$i]['id']);
   $linkProductsName = zen_href_link(zen_get_info_page($products[$i]['id']), 'products_id=' . $products[$i]['id']);
   $productsImage = (IMAGE_SHOPPING_CART_STATUS == 1 ? zen_image(DIR_WS_IMAGES . $products[$i]['image'], $products[$i]['name'], IMAGE_SHOPPING_CART_WIDTH, IMAGE_SHOPPING_CART_HEIGHT) : '');
@@ -193,9 +183,9 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
                             'linkProductsImage'=>$linkProductsImage,
                             'linkProductsName'=>$linkProductsName,
                             'stockAvailable'=>$stockAvailable,
-			                'stockofproduct'=>$stockofproduct,
-			                'lowproductstock'=>$lowproductstock,
-			                'noproductstock'=>$noproductstock,
+			    'stockofproduct'=>$stockofproduct,
+			    'lowproductstock'=>$lowproductstock,
+			    'noproductstock'=>$noproductstock,
                             'productsImage'=>$productsImage,
                             'productsName'=>$productsName,
                             'showFixedQuantity'=>$showFixedQuantity,

@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php for SBA 2020-02-06 18:41:51Z webchills $
+ * @version $Id: header_php.php for SBA 2020-07-15 20:41:51Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -61,7 +61,7 @@ $_SESSION['mobilevisitor'] = false;
     $products = $_SESSION['cart']->get_products();
     for ($i=0, $n=sizeof($products); $i<$n; $i++) {
 
-      // Added to allow individual stock of different attributes
+      // Begin SBA - Added to allow individual stock of different attributes
       unset($attributes);
       if(is_array($products[$i]['attributes'])) {
 	      $attributes = $products[$i]['attributes'];
@@ -70,7 +70,7 @@ $_SESSION['mobilevisitor'] = false;
       }
 
       if (zen_check_stock($products[$i]['id'], $products[$i]['quantity'], $attributes)) {
-// End change
+// End SBA
         zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
         break;
       }
@@ -128,7 +128,6 @@ if (isset($_SESSION['cart']->cartID)) {
   $shipping_modules = new shipping;
 
   $pass = true;
-  $free_shipping = false;
   if ( defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING == 'true') ) {
     $pass = false;
 
@@ -148,9 +147,12 @@ if (isset($_SESSION['cart']->cartID)) {
         break;
     }
 
+    $free_shipping = false;
     if ( ($pass == true) && ($_SESSION['cart']->show_total() >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER) ) {
       $free_shipping = true;
     }
+  } else {
+    $free_shipping = false;
   }
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
@@ -177,7 +179,7 @@ if (isset($_SESSION['cart']->cartID)) {
           $quote['error'] = 'Invalid input. Please make another selection.';
         }
         list($module, $method) = explode('_', $_POST['shipping']);
-        if ( (isset($$module) && is_object($$module)) || ($_POST['shipping'] == 'free_free') ) {
+        if ( is_object($$module) || ($_POST['shipping'] == 'free_free') ) {
           if ($_POST['shipping'] == 'free_free') {
             $quote[0]['methods'][0]['title'] = FREE_SHIPPING_TITLE;
             $quote[0]['methods'][0]['cost'] = '0';
@@ -211,7 +213,7 @@ if (isset($_SESSION['cart']->cartID)) {
   $quotes = $shipping_modules->quote();
 
   // check that the currently selected shipping method is still valid (in case a zone restriction has disabled it, etc)
-  if (isset($_SESSION['shipping']['id'])) {
+  if (isset($_SESSION['shipping'])) {
     $checklist = array();
     foreach ($quotes as $key=>$val) {
       if ($val['methods'] != '') {

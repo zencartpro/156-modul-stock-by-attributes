@@ -164,35 +164,7 @@
  *
  * @param int $products_id The product id of the product whose stock we want
 */
-/* Begin Stock by Attributes additions */
-/* Disable Default Function
-
-  function zen_get_products_stock($products_id) {
-    global $db;
-    // -----
-    // Give an observer the chance to modify this function's return value.
-    //
-    $products_quantity = 0;
-    $quantity_handled = false;
-    $GLOBALS['zco_notifier']->notify(
-        'ZEN_GET_PRODUCTS_STOCK',
-        $products_id,
-        $products_quantity,
-        $quantity_handled
-    );
-    if ($quantity_handled) {
-        return $products_quantity;
-    }
-    $products_id = zen_get_prid($products_id);
-    $stock_query = "select products_quantity
-                    from " . TABLE_PRODUCTS . "
-                    where products_id = " . (int)$products_id . " LIMIT 1";
-
-    $stock_values = $db->Execute($stock_query);
-
-    return $stock_values->fields['products_quantity'];
-  }
-*/
+/* Begin SBA */
   function zen_get_products_stock($products_id, $attributes = '') {
     global $db;
     $products_id = zen_get_prid($products_id);
@@ -244,7 +216,7 @@
 
   }
 /*
- *End Amend for Stock by Attributes add-on
+ *End SBA
 */
 
 /**
@@ -254,22 +226,7 @@
  * @param int $products_id        The product id of the product whose stock is to be checked
  * @param int $products_quantity  Quantity to compare against
 */
-/* Begin Stock by Attributes additions */
-/* Disable Default Function
-  function zen_check_stock($products_id, $products_quantity) {
-    $stock_left = zen_get_products_stock($products_id) - $products_quantity;
-    $out_of_stock = '';
-
-    if ($stock_left < 0) {
-      $out_of_stock = '<span class="markProductOutOfStock">' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</span>';
-    }
-
-    return $out_of_stock;
-  }
-*/
-
-  // modified to include attributes
-  /* Removed redundant section of code--Zola*/
+/* Begin SBA */
   function zen_check_stock($products_id, $products_quantity, $attributes = '') {
 
     $stock_left = zen_get_products_stock($products_id, $attributes) - $products_quantity;
@@ -282,7 +239,7 @@
     return $out_of_stock;
   }
 /*
- *End Amend for Stock by Attributes add-on
+ *End SBA
 */
 
 
@@ -823,9 +780,6 @@ function zen_get_configuration_key_value($lookup)
       $sql = "select products_type from " . TABLE_PRODUCTS . " where products_id='" . $lookup . "'";
       $type_lookup = $db->Execute($sql);
 
-      if ($type_lookup->RecordCount() == 0) {
-        return false;
-      }
 
       $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = '" . $type_lookup->fields['products_type'] . "'";
       $show_key = $db->Execute($sql);
