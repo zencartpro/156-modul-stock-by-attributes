@@ -6,7 +6,7 @@
  * @package classes
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php for SBA 2020-07-15 19:52:23Z webchills $
+ * @version $Id: order.php for SBA 2020-07-30 15:52:23Z webchills $
  */
 /**
  * order class
@@ -414,16 +414,6 @@ class order extends base {
                         
                         );
 
-    //print_r($GLOBALS[$class]);
-    //echo $class;
-    //print_r($GLOBALS);
-    //echo $_SESSION['payment'];
-    /*
-    // this is set above to the module filename it should be set to the module title like Checks/Money Order rather than moneyorder
-    if (isset(${$_SESSION['payment']}) && is_object(${$_SESSION['payment']})) {
-    $this->info['payment_method'] = ${$_SESSION['payment']}->title;
-    }
-    */
 
     if ($customer_address->RecordCount() > 0) {
       $this->customer = array('gender' => $customer_address->fields['customers_gender'],

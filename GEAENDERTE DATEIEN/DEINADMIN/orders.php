@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php for SBA 2020-07-15 20:12:51Z webchills $
+ * @version $Id: orders.php for SBA 2020-07-30 16:05:51Z webchills $
 
  */
 require('includes/application_top.php');
@@ -348,7 +348,7 @@ if (zen_not_null($action) && $order_exists == true) {
     <!-- body //-->
     <div class="container-fluid">
       <!-- body_text //-->
-      <h1><?php echo ($action == 'edit' && $order_exists) ? HEADING_TITLE_DETAILS : HEADING_TITLE; ?></h1>
+      <h1><?php echo ($action == 'edit' && $order_exists) ? sprintf(HEADING_TITLE_DETAILS, (int)$oID) : HEADING_TITLE; ?></h1>
 
       <?php $order_list_button = '<a role="button" class="btn btn-default" href="' . zen_href_link(FILENAME_ORDERS) . '"><i class="fa fa-th-list" aria-hidden="true">&nbsp;</i> ' . BUTTON_TO_LIST . '</a>'; ?>
       <?php if ($action == '') { ?>
@@ -615,10 +615,6 @@ if (zen_not_null($action) && $order_exists == true) {
           $option_Name = $option_name_array[0];
           // eof SBA
                         echo '<br><span style="white-space:nowrap;"><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
-                        if (zen_is_option_file($order->products[$i]['attributes'][$j]['option_id'])) {
-                          $upload_name = zen_get_uploaded_file($order->products[$i]['attributes'][$j]['value']);
-                          echo ' ' . '<a href="' . zen_href_link(FILENAME_ORDERS, 'action=download&oID=' . $oID . '&filename=' .  $upload_name) . '">' . TEXT_DOWNLOAD . '</a>' . ' ';
-                        }
                         if ($order->products[$i]['attributes'][$j]['price'] != '0') {
                           echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
                         }
