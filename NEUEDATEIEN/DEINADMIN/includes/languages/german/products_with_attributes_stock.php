@@ -1,10 +1,10 @@
 <?php
 /**
  * @package Stock by Attributes for Zen Cart German
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_with_attributes_stock.php 2020-02-06 18:37:14Z webchills $
+ * @version $Id: products_with_attributes_stock.php 2021-02-16 10:37:14Z webchills $
  */
  
 define('PWA_DELETE_VARIANT_CONFIRMATION', 'Wollen Sie diese Artikelvariante wirklich löschen?');
@@ -32,4 +32,4 @@ define('PWA_EDIT', 'Bearbeiten');
 define('PWA_DELETE', 'Löschen');
 define('PWA_SUBMIT','Absenden');
 define('PWA_SORTIEREN','Sortieren');
-define('PWA_WELCOME','Lagerbestandsverwaltung für Artikel mit Attributen (Stock by Attributes) 2.0.2');
+define('PWA_WELCOME','Lagerbestandsverwaltung für Artikel mit Attributen (Stock by Attributes) 2.0.3');
